@@ -8,10 +8,9 @@ and send pull requests to there rather than here.
 Some lessons in WebGL
 ---------------------
 
-This repository contains a series of simple lessons in WebGL, plus some
-related examples.
+This repository contains a series of simple lessons in WebGL
 
-The folders named lesson01, lesson02, and so on are a sequential tutorial and
+The folders are numbered from 00 on are a sequential tutorial and
 are best understood using the explanatory text at:
 
     <http://learningwebgl.com/lessons/>
@@ -21,10 +20,9 @@ well-known OpenGL tutorial, which can be found here:
 
     <http://nehe.gamedev.net/>
 
-The lessons from 11 onwards are not related to the NeHe ones.
-
-The folders named example01 etc are example code for interesting stuff outside
-the scope of the tutorial, and have their own README.txt files with details.
+The lessons from 11 onwards are not related to the NeHe ones. This fork presents
+adapted version of original lessons with commented code, restructuring of
+files and folders and some changes in assets.
 
 
 Problems seeing the lessons?
