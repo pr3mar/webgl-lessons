@@ -5,7 +5,7 @@ var shaderProgram;
 
 // Buffers
 var triangleVertexPositionBuffer;
-var squareVertexPositionBuffer;/Users/cirilbohak/git/webgl-lessons/scripts/02-colors.js
+var squareVertexPositionBuffer;
 
 // Model-View and Projection matrices
 var mvMatrix = mat4.create();
