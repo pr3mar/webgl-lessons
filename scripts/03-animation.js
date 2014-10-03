@@ -143,10 +143,10 @@ function initShaders() {
   gl.useProgram(shaderProgram);
 
   // store location of aVertexPosition variable defined in shader
-  vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+  shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
 
   // turn on vertex position attribute at specified position
-  gl.enableVertexAttribArray(vertexPositionAttribute);
+  gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
 
   // store location of aVertexColor variable defined in shader
   shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
