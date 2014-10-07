@@ -134,7 +134,7 @@ function setMatrixUniforms() {
 // initBuffers
 //
 // Initialize the buffers we'll need. For this demo, we just have
-// one object -- a simple two-dimensional triangle and square.
+// two objects -- a simple two-dimensional triangle and square.
 //
 function initBuffers() {
   // TRIANGLE

@@ -17,9 +17,6 @@ var pMatrix = mat4.create();
 // Variables for storing textures
 var cubeTexture;
 
-// Variable that stors selected texture filtering method
-var filter = 0;
-
 // Variable that stores  loading state of textures.
 var texturesLoaded = false;
 
@@ -181,18 +178,25 @@ function initShaders() {
 
   // store location of uPMatrix variable defined in shader - projection matrix 
   shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
+
   // store location of uMVMatrix variable defined in shader - model-view matrix 
   shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+
   // store location of uNMatrix variable defined in shader - normal matrix 
   shaderProgram.nMatrixUniform = gl.getUniformLocation(shaderProgram, "uNMatrix");
+
   // store location of uSampler variable defined in shader
   shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
+
   // store location of uUseLighting variable defined in shader
   shaderProgram.useLightingUniform = gl.getUniformLocation(shaderProgram, "uUseLighting");
+
   // store location of uAmbientColor variable defined in shader
   shaderProgram.ambientColorUniform = gl.getUniformLocation(shaderProgram, "uAmbientColor");
+
   // store location of uLightingDirection variable defined in shader
   shaderProgram.lightingDirectionUniform = gl.getUniformLocation(shaderProgram, "uLightingDirection");
+
   // store location of uDirectionalColor variable defined in shader
   shaderProgram.directionalColorUniform = gl.getUniformLocation(shaderProgram, "uDirectionalColor");
 }
@@ -431,7 +435,7 @@ function drawScene() {
   
   // Establish the perspective with which we want to view the
   // scene. Our field of view is 45 degrees, with a width/height
-  // ratio of 640:480, and we only want to see objects between 0.1 units
+  // ratio and we only want to see objects between 0.1 units
   // and 100 units away from the camera.
   mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
 
@@ -531,14 +535,6 @@ function animate() {
 function handleKeyDown(event) {
   // storing the pressed state for individual key
   currentlyPressedKeys[event.keyCode] = true;
-
-  // handling single keypress for switching filters
-  if (String.fromCharCode(event.keyCode) == "F") {
-    filter += 1;
-    if (filter == 3) {
-      filter = 0;
-    }
-  }
 }
 
 function handleKeyUp(event) {
@@ -583,7 +579,6 @@ function handleKeys() {
 // start
 //
 // Called when the canvas is created to get the ball rolling.
-// Figuratively, that is. There's nothing moving in this demo.
 //
 function start() {
   canvas = document.getElementById("glcanvas");

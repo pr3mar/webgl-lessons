@@ -156,6 +156,7 @@ function initShaders() {
 
   // store location of uPMatrix variable defined in shader - projection matrix 
   shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
+
   // store location of uMVMatrix variable defined in shader - model-view matrix 
   shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
 }
@@ -173,8 +174,8 @@ function setMatrixUniforms() {
 //
 // initBuffers
 //
-// Initialize the buffers we'll need. For this demo, we just have
-// one object -- a simple two-dimensional cube.
+// Initialize the buffers we'll need. For this demo, we have
+// two objecta -- a simple cube and pyramidß.
 //
 function initBuffers() {
   // PYRAMID
@@ -356,7 +357,7 @@ function drawScene() {
   
   // Establish the perspective with which we want to view the
   // scene. Our field of view is 45 degrees, with a width/height
-  // ratio of 640:480, and we only want to see objects between 0.1 units
+  // ratio and we only want to see objects between 0.1 units
   // and 100 units away from the camera.
   mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
 
@@ -441,7 +442,6 @@ function animate() {
 // start
 //
 // Called when the canvas is created to get the ball rolling.
-// Figuratively, that is. There's nothing moving in this demo.
 //
 function start() {
   canvas = document.getElementById("glcanvas");

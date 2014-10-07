@@ -176,6 +176,7 @@ function initShaders() {
   shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
   // store location of uMVMatrix variable defined in shader - model-view matrix 
   shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+
   // store location of uSampler variable defined in shader
   shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
 }
@@ -244,7 +245,7 @@ function handleTextureLoaded(textures) {
 // initBuffers
 //
 // Initialize the buffers we'll need. For this demo, we just have
-// one object -- a simple two-dimensional cube.
+// one object -- a simple cube.
 //
 function initBuffers() {
   // Create a buffer for the cube's vertices.
@@ -379,7 +380,7 @@ function drawScene() {
   
   // Establish the perspective with which we want to view the
   // scene. Our field of view is 45 degrees, with a width/height
-  // ratio of 640:480, and we only want to see objects between 0.1 units
+  // ratio and we only want to see objects between 0.1 units
   // and 100 units away from the camera.
   mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
 
@@ -391,7 +392,7 @@ function drawScene() {
   // drawing the cube.
   mat4.translate(mvMatrix, [0.0, 0.0, positionCubeZ]);
 
-  // Rotate before we draw.1
+  // Rotate before we draw.
   mat4.rotate(mvMatrix, degToRad(rotationCubeX), [1, 0, 0]);
   mat4.rotate(mvMatrix, degToRad(rotationCubeY), [0, 1, 0]);
   mat4.rotate(mvMatrix, degToRad(rotationCubeZ), [0, 0, 1]);

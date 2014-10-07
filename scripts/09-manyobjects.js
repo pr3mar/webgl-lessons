@@ -236,10 +236,13 @@ function initShaders() {
 
   // store location of uPMatrix variable defined in shader - projection matrix 
   shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
+
   // store location of uMVMatrix variable defined in shader - model-view matrix 
   shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+
   // store location of uSampler variable defined in shader
   shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
+
   // store location of uColor variable defined in shader
   shaderProgram.colorUniform = gl.getUniformLocation(shaderProgram, "uColor");
 }
@@ -290,17 +293,17 @@ function handleTextureLoaded(texture) {
 // initBuffers
 //
 // Initialize the buffers we'll need. For this demo, we just have
-// one object -- a simple two-dimensional cube.
+// one object -- a simple two-dimensional square placeholder.
 //
 function initBuffers() {
-  // Create a buffer for the cube's vertices.
+  // Create a buffer for the square placeholder's vertices.
   starVertexPositionBuffer = gl.createBuffer();
   
   // Select the starVertexPositionBuffer as the one to apply vertex
   // operations to from here out.
   gl.bindBuffer(gl.ARRAY_BUFFER, starVertexPositionBuffer);
   
-  // Now create an array of vertices for the cube.
+  // Now create an array of vertices for the square placeholder.
   vertices = [
     -1.0, -1.0,  0.0,
      1.0, -1.0,  0.0,
@@ -315,7 +318,7 @@ function initBuffers() {
   starVertexPositionBuffer.itemSize = 3;
   starVertexPositionBuffer.numItems = 4;
 
-  // Map the texture onto the cube's faces.
+  // Map the texture onto the square placeholder's faces.
   starVertexTextureCoordBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, starVertexTextureCoordBuffer);
   
@@ -385,7 +388,7 @@ function drawScene() {
   
   // Establish the perspective with which we want to view the
   // scene. Our field of view is 45 degrees, with a width/height
-  // ratio of 640:480, and we only want to see objects between 0.1 units
+  // ratio and we only want to see objects between 0.1 units
   // and 100 units away from the camera.
   mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
 
@@ -439,14 +442,6 @@ function animate() {
 function handleKeyDown(event) {
   // storing the pressed state for individual key
   currentlyPressedKeys[event.keyCode] = true;
-
-  // handling single keypress for switching filters
-  if (String.fromCharCode(event.keyCode) == "F") {
-    filter += 1;
-    if (filter == 3) {
-      filter = 0;
-    }
-  }
 }
 
 function handleKeyUp(event) {
@@ -483,7 +478,6 @@ function handleKeys() {
 // start
 //
 // Called when the canvas is created to get the ball rolling.
-// Figuratively, that is. There's nothing moving in this demo.
 //
 function start() {
   canvas = document.getElementById("glcanvas");
