@@ -554,7 +554,7 @@ function initBuffers() {
      0.580687, 0.659, 0.813106,
     -0.580687, 0.659, 0.813107,
      0.580687, 0.472, 0.113121,
-    -0.580687, 0.472, 0.113121,
+    -0.580687, 0.472, 0.113121
   ];
   
   // Now pass the list of vertices into WebGL to build the shape. We
@@ -573,7 +573,7 @@ function initBuffers() {
      0.000000, -0.965926, 0.258819,
      0.000000, -0.965926, 0.258819,
      0.000000, -0.965926, 0.258819,
-     0.000000, -0.965926, 0.258819,
+     0.000000, -0.965926, 0.258819
   ];
 
   // Pass the normals into WebGL
@@ -590,7 +590,7 @@ function initBuffers() {
       1.0, 1.0,
       0.0, 1.0,
       1.0, 0.0,
-      0.0, 0.0,
+      0.0, 0.0
   ];
 
   // Pass the texture coordinates into WebGL

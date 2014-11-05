@@ -28,7 +28,8 @@ var moonTexture;
 var crateTexture;
 
 // Variable that stores  loading state of textures.
-var texturesLoaded = false;
+var numberOfTextures = 2;
+var texturesLoaded = 0;
 
 // Mouse helper variables
 var moonAngle = 180;
@@ -254,7 +255,7 @@ function handleTextureLoaded(texture) {
   gl.bindTexture(gl.TEXTURE_2D, null);
 
   // when texture loading is finished we can draw scene.
-  texturesLoaded = true;
+  texturesLoaded += 1;
 }
 
 
@@ -694,7 +695,7 @@ function start() {
     
     // Set up to draw the scene periodically.
     setInterval(function() {
-      if (texturesLoaded) { // only draw scene and animate when textures are loaded.
+      if (texturesLoaded == numberOfTextures) { // only draw scene and animate when textures are loaded.
         requestAnimationFrame(animate);
         drawScene();
       }
