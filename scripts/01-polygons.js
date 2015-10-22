@@ -168,6 +168,7 @@ function initBuffers() {
   // Now create an array of vertices for the square. Note that the Z
   // coordinate is always 0 here.
   vertices = [
+     //0.0,  2.0,  0.0,
      1.0,  1.0,  0.0,
     -1.0,  1.0,  0.0,
      1.0, -1.0,  0.0,
@@ -208,20 +209,21 @@ function drawScene() {
 
   // Now move the drawing position a bit to where we want to start
   // drawing the triangle.
-  mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);
+  mat4.translate(mvMatrix, [0.0, 0.0, -7.0]);
   
   // Draw the triangle by binding the array buffer to the square's vertices
   // array, setting attributes, and pushing it to GL.
   gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
   gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
   setMatrixUniforms();
-  gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
+  //gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
 
   // SQUARE:
   
   // Now move the drawing position a bit to where we want to start
   // drawing the square.
-  mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
+  //mat4.translate(mvMatrix, [0.0, 0.0, 0.0]);
+    mat4.scale(mvMatrix, [0.1, 0.1, 0.1]);
 
   // Draw the square by binding the array buffer to the square's vertices
   // array, setting attributes, and pushing it to GL.
@@ -229,6 +231,43 @@ function drawScene() {
   gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
   setMatrixUniforms();
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
+
+    // circle
+    for(var i = 0; i < 16; i++) {
+        mat4.identity(mvMatrix);
+        mat4.rotateZ(mvMatrix, i * Math.PI/8);
+        mat4.translate(mvMatrix, [0.0, 0.0, -7.0]);
+        mat4.scale(mvMatrix, [0.1, 0.1, 0.1]);
+        mat4.translate(mvMatrix, [10.0, 0.0, 0.0]);
+        setMatrixUniforms();
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
+        smallSquares();
+        tail();
+        //mat4.translate(mvMatrix, [-10.0, 0.0, 0.0]);
+    }
+}
+
+function smallSquares() {
+    mat4.scale(mvMatrix, [0.1, 0.1, 0.1]);
+    for(var i = 0; i < 16; i++) {
+        mat4.rotateZ(mvMatrix, Math.PI/8);
+        mat4.translate(mvMatrix, [17.0, 0.0, 0.0]);
+        setMatrixUniforms();
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
+        mat4.translate(mvMatrix, [-17.0, 0.0, 0.0]);
+    }
+    mat4.scale(mvMatrix, [10, 10, 10]);
+}
+
+function tail() {
+    scale = 0.65;
+    for(var i = 0; i < 10; i++) {
+        mat4.scale(mvMatrix, [scale, scale, scale]);
+        mat4.rotateZ(mvMatrix, Math.PI/16);
+        mat4.translate(mvMatrix, [10, 0, 0]);
+        setMatrixUniforms();
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
+    }
 }
 
 //
