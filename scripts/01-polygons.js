@@ -263,7 +263,7 @@ function tail() {
     scale = 0.65;
     for(var i = 0; i < 10; i++) {
         mat4.scale(mvMatrix, [scale, scale, scale]);
-        mat4.rotateZ(mvMatrix, Math.PI/16);
+        mat4.rotateZ(mvMatrix, i * Math.PI/16);
         mat4.translate(mvMatrix, [10, 0, 0]);
         setMatrixUniforms();
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
