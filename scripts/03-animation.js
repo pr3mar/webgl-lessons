@@ -20,6 +20,12 @@ var rotationSquare = 0;
 
 // Helper variable for animation
 var lastTime = 0;
+var startTime = null;
+var pause = false;
+
+function pauseAnimation() {
+  pause = !pause;
+}
 
 //
 // Matrix utility functions
@@ -334,9 +340,11 @@ function drawScene() {
 //
 function animate() {
   var timeNow = new Date().getTime();
-  if (lastTime != 0) {
+  //if((timeNow - startTime) > 5000) {
+  //  return;
+  //}
+  if (lastTime != 0 && !pause) {
     var elapsed = timeNow - lastTime;
-
     // rotate triangle and square for a small amount
     rotationTriangle += (90 * elapsed) / 1000.0;
     rotationSquare += (75 * elapsed) / 1000.0;
@@ -371,6 +379,10 @@ function start() {
     
     // Set up to draw the scene periodically.
     setInterval(function() {
+      if(startTime == null) {
+        startTime = new Date().getTime();
+        console.log(startTime);
+      }
       requestAnimationFrame(animate);
       drawScene();
     }, 15);
